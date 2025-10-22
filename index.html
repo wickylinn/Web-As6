@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Play Beat</title>
+
+  <!-- Bootstrap for spacing utilities -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="register.css">
+
+  <style>
+    /* Navbar spacing and layout */
+    .nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      background: var(--bg1-color);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Logo below header */
+    .logo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 120px; /* space for fixed header */
+    }
+
+    /* Center intro section */
+    .intropage {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .vinyl {
+      margin: 2rem auto;
+    }
+  </style>
+</head>
+<body class="light-green">
+
+  <!-- Header -->
+  <header class="nav-header d-flex justify-content-between align-items-center p-3 px-lg-5 shadow-sm fixed-top">
+    <div class="nav-left">
+      <button onclick="window.location.href='about.html'">About</button>
+      <button onclick="window.location.href='news.html'">News</button>
+      <a href="listen.html"><button>Start Listening</button></a>
+      <button onclick="toggleTheme()">Toggle Theme</button>
+    </div>
+
+    <div class="nav-right">
+      <button id="register-btn">Register</button>
+      <button id="user-area" style="display:none;"></button>
+    </div>
+  </header>
+
+  <!-- Logo -->
+  <div class="logo-wrap mt-5 pt-5 d-flex justify-content-center">
+    <img id="logo" src="Logos/logoW.png" alt="logo" width="300" data-mini="false" class="mt-3">
+  </div>
+
+  <!-- Intro Section -->
+  <section class="intropage text-center mt-4 mt-md-5">
+
+    <h2>
+      Welcome to your music world! <br>
+      Your personal online player with favorite tracks, playlists, and smart recommendations.<br>
+      Music is always with you — on your computer, tablet, or phone.
+    </h2>
+
+    <div class="vinyl">
+      <div class="label"></div>
+      <div class="spindle"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer mt-4 mt-lg-5 py-3 text-center">
+    &copy; 2025 Play Beat. All rights reserved.
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="toggleTheme.js"></script>
+  <script src="register.js"></script>
+  <script src="assignment5.js"></script>
+  <script src="playbeat.js"></script>
+</body>
+</html>

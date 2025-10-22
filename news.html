@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music News - Play Beat</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="bootstrap-styles.css">
+</head>
+<style>
+   :root {
+      --bg-color: #ffffff;
+      --text-color: #3D3E40;
+      --accent-color: #E32C2B;
+      --bg1-color: #f5f5f5;
+    }
+
+    .dark-theme {
+      --bg-color: #30302f;
+      --text-color: #eaeaea;
+      --accent-color: #7fd367;
+      --bg1-color: #424241;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: sans-serif;
+      transition: background 0.3s, color 0.3s;
+      padding-top: 76px;
+    }
+
+    .navbar {
+      background-color: var(--accent-color) !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: white !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: white !important;
+      font-weight: 500;
+      margin: 0 10px;
+      transition: 0.3s;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: var(--bg-color) !important;
+    }
+
+    .theme-toggle {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background: white;
+      color: var(--accent-color);
+    }
+
+    .vinyl-container {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .vinyl {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: repeating-radial-gradient(circle, #111 0 2px, #393939 3px 4px);
+      position: relative;
+      box-shadow: inset 0 0 20px #000;
+      animation: spin 5s linear infinite;
+    }
+
+    .label {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-color);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      box-shadow: inset 0 0 10px #000;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    .spindle {
+      width: 8px;
+      height: 8px;
+      background: var(--bg-color);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .card {
+      background: var(--bg1-color);
+      border: none;
+      border-radius: 12px;
+      transition: transform 0.2s;
+      margin-bottom: 20px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .btn-primary {
+      background-color: var(--accent-color);
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      padding: 10px 30px;
+      transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+      background-color: var(--accent-color);
+    }
+
+    .footer {
+      background: #222;
+      color: #bbb;
+      padding: 30px 0;
+      margin-top: 50px;
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+<body>
+  <!-- Bootstrap Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-music"></i> Play Beat
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="register.html">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="news.html">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+        </ul>
+        <button class="theme-toggle ms-3" onclick="toggleTheme()">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="container text-center my-5 pt-5">
+    <div class="vinyl-container">
+      <div class="vinyl">
+        <div class="label"></div>
+        <div class="spindle"></div>
+      </div>
+    </div>
+    <h1 class="display-4 fw-bold">Latest Music News</h1>
+    <p class="lead">Stay updated with the hottest music trends</p>
+  </div>
+
+  <!-- Featured News with Bootstrap Carousel -->
+  <div class="container my-5">
+    <h2 class="text-center mb-4">Breaking News</h2>
+    <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="2"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="carousel-news-content">
+            <h3>🎵 The Weeknd Drops New Album</h3>
+            <p>The superstar releases a groundbreaking blend of R&B and electronic music</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="carousel-news-content">
+            <h3>🎸 Rock Revival Festival 2025</h3>
+            <p>Legendary bands reunite for the biggest rock event of the decade</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="carousel-news-content">
+            <h3>🔥 Summer Vibes Goes Viral</h3>
+            <p>DJ Nova's hit track breaks streaming records worldwide</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- News Grid with Bootstrap Cards -->
+  <div class="container my-5">
+    <h2 class="text-center mb-4">Top Stories</h2>
+    <div class="row g-4">
+      <!-- News Card 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 news-card">
+          <div class="card-header" style="background: var(--accent-color); color: white;">
+            <i class="fas fa-star"></i> Featured
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">New Album from The Weekend</h5>
+            <p class="card-text">The Weeknd has released a brand new album that blends R&B and electronic vibes. Fans can listen to it exclusively on Play Beat.</p>
+            <p class="text-muted small"><i class="far fa-calendar"></i> October 5, 2025</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary btn-sm">Read More</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- News Card 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 news-card">
+          <div class="card-header" style="background: var(--accent-color); color: white;">
+            <i class="fas fa-fire"></i> Trending
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Rock Revival Festival Announced</h5>
+            <p class="card-text">A huge rock festival will take place this summer featuring legendary bands and new talents. Stay tuned for ticket details.</p>
+            <p class="text-muted small"><i class="far fa-calendar"></i> October 3, 2025</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary btn-sm">Read More</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- News Card 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 news-card">
+          <div class="card-header" style="background: var(--accent-color); color: white;">
+            <i class="fas fa-chart-line"></i> Most Streamed
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Trending Track: Summer Vibes</h5>
+            <p class="card-text">"Summer Vibes" by DJ Nova is currently the most streamed track this week. Add it to your playlist and feel the energy!</p>
+            <p class="text-muted small"><i class="far fa-calendar"></i> October 1, 2025</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary btn-sm">Read More</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- News Card 4 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 news-card">
+          <div class="card-body">
+            <h5 class="card-title">AI-Powered Playlists</h5>
+            <p class="card-text">We have introduced AI-powered playlists that adapt to your mood and listening habits. Experience music like never before.</p>
+            <p class="text-muted small"><i class="far fa-calendar"></i> September 28, 2025</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary btn-sm">Read More</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- News Card 5 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 news-card">
+          <div class="card-body">
+            <h5 class="card-title">Partnership Announcement</h5>
+            <p class="card-text">Play Beat partners with top music labels to bring exclusive content to our users. Get ready for amazing releases.</p>
+            <p class="text-muted small"><i class="far fa-calendar"></i> September 25, 2025</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary btn-sm">Read More</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- News Card 6 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 news-card">
+          <div class="card-body">
+            <h5 class="card-title">Upcoming Live Concerts</h5>
+            <p class="card-text">Stay tuned for our live online concert series starting this November. Watch your favorite artists perform live.</p>
+            <p class="text-muted small"><i class="far fa-calendar"></i> September 20, 2025</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary btn-sm">Read More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional Features Section -->
+  <div class="container my-5">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="card text-center feature-card">
+          <div class="card-body">
+            <i class="fas fa-podcast fa-3x mb-3" style="color: var(--accent-color);"></i>
+            <h5 class="card-title">Podcasts</h5>
+            <p class="card-text">Discover exclusive music podcasts and interviews with top artists</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card text-center feature-card">
+          <div class="card-body">
+            <i class="fas fa-bell fa-3x mb-3" style="color: var(--accent-color);"></i>
+            <h5 class="card-title">Notifications</h5>
+            <p class="card-text">Get notified when your favorite artists release new music</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card text-center feature-card">
+          <div class="card-body">
+            <i class="fas fa-newspaper fa-3x mb-3" style="color: var(--accent-color);"></i>
+            <h5 class="card-title">Weekly Digest</h5>
+            <p class="card-text">Subscribe to our weekly music news digest via email</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="container text-center my-5">
+    <div class="card">
+      <div class="card-body p-5">
+        <h3 class="mb-3">Never Miss a Beat!</h3>
+        <p class="lead mb-4">Subscribe to get the latest music news delivered to your inbox</p>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" placeholder="Enter your email">
+              <button class="btn btn-primary" type="button">Subscribe</button>
+            </div>
+          </div>
+        </div>
+        <a href="index.html" class="btn btn-outline-secondary mt-3">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container text-center">
+      <p>&copy; 2025 Play Beat. All rights reserved.</p>
+      <p class="mt-2">
+        <strong>Team Members:</strong> Nuraly, Sultan, Daniyar, Ramazan
+      </p>
+      <p><strong>Group:</strong> Eagles</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark-theme');
+      const icon = document.querySelector('.theme-toggle i');
+      if (document.body.classList.contains('dark-theme')) {
+        icon.className = 'fas fa-sun';
+      } else {
+        icon.className = 'fas fa-moon';
+      }
+    }
+  </script>
+  <script src="toggleTheme.js"></script>
+  <script src="assignment5.js"></script>
+  <script src="playbeat.js"></script>
+</body>
+</html>
