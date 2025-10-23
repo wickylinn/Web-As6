@@ -1,0 +1,243 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <title>Listen to Songs</title> 
+  <link rel="stylesheet" href="styles.css"> 
+  <link rel="stylesheet" href="songInfo.css"> 
+</head> 
+<body> 
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 15px 40px;">
+    <!-- Logo + Vinyl container -->
+    <div style="display: flex; align-items: center; gap: 30px;">
+      <a href="index.html">
+        <img id="logo" src="Logos/logoWmini.png" alt="logo" width="150" data-mini="true">
+      </a>
+      <div class="vinyl">
+        <div class="label"></div>
+        <div class="spindle"></div>
+      </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <nav style="display: flex; gap: 20px; align-items: center;">
+      <button>
+        <a href="playlist.html" style="color: var(--bg-color); text-decoration: none; font-size: 18px;">My Playlist</a>
+      </button>
+      <button id="user-area"></button>
+    </nav>
+  </header>
+
+
+  <!-- Spacer to keep the rest of the page in place -->
+  <div style="height: 220px;"></div>
+
+  <script src="register.js"></script> 
+  <script src="toggleTheme.js"></script> 
+
+
+  <div class="cards-container" style="display: flex; gap: 25px; padding:10px;justify-content: center; align-items: stretch; max-width: 1200px; margin-top: -180px; left: 0px; position: relative; flex-wrap: wrap;"> 
+    <div class="feature-card"> 
+      <img src="Logos/music-logo-black.png" alt="Rock"> 
+      <div style="padding: relative;"> 
+        <h3 style="color: var(--bg-color); margin: 0 0 4px;">Rock Classics</h3> 
+        <p style="color: var(--bg-color); opacity: 0.8; margin-bottom: 15px;">Greatest rock anthems from legendary bands</p> 
+        <button style="padding: 10px 25px; background: var(--bg-color); color: var(--text-color); border: none; border-radius: 20px; cursor: pointer;">Listen</button> 
+      </div> 
+    </div> 
+    <div class="feature-card"> 
+      <img src="Logos/music-logo-black.png" alt="Folk"> 
+      <div style="padding: relative;"> 
+        <h3 style="color: var(--bg-color); margin: 0 0 4px;">Folk Music</h3> 
+        <p style="color: var(--bg-color); opacity: 0.8; margin-bottom: 15px;">Touching songs with acoustic guitar instrumental</p> 
+        <button style="padding: 10px 25px; background: var(--bg-color); color: var(--text-color); border: none; border-radius: 20px; cursor: pointer;">Listen</button> 
+      </div> 
+    </div> 
+    <div class="feature-card"> 
+      <img src="Logos/music-logo-black.png" alt="Pop"> 
+      <div style="padding: relative;"> 
+        <h3 style="color: var(--bg-color); margin: 0 0 4px;">Pop Hits</h3> 
+        <p style="color: var(--bg-color); opacity: 0.8; margin-bottom: 15px;">Modern remixes and electronic beats</p> 
+        <button style="padding: 10px 25px; background: var(--bg-color); color: var(--text-color); border: none; border-radius: 20px; cursor: pointer;">Listen</button> 
+      </div> 
+    </div> 
+  </div> 
+
+  <div style="display: grid; grid-template-columns: 200px 1fr; grid-template-areas: 'sidebar main'; gap: 10px; padding: 20px 40px; min-height: 600px;">
+
+    <aside style="grid-area: sidebar; background: var(--text-color); padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);"> 
+      <h3 style="color: var(--bg-color); margin: 0 0 15px;">Genres</h3> 
+      <div style="color: var(--bg-color); padding: 10px; margin-bottom: 8px; border-radius: 5px; cursor: pointer; transition: all 0.2s;" 
+           onmouseover="this.style.background='var(--accent-color)'; this.style.color='var(--text-color)'" 
+           onmouseout="this.style.background=''; this.style.color='var(--bg-color)'">All Songs</div> 
+      <div style="color: var(--bg-color); padding: 10px; margin-bottom: 8px; border-radius: 5px; cursor: pointer; transition: all 0.2s;" 
+           onmouseover="this.style.background='var(--accent-color)'; this.style.color='var(--text-color)'" 
+           onmouseout="this.style.background=''; this.style.color='var(--bg-color)'">Rock</div> 
+      <div style="color: var(--bg-color); padding: 10px; margin-bottom: 8px; border-radius: 5px; cursor: pointer; transition: all 0.2s;" 
+           onmouseover="this.style.background='var(--accent-color)'; this.style.color='var(--text-color)'" 
+           onmouseout="this.style.background=''; this.style.color='var(--bg-color)'">Folk</div> 
+      <div style="color: var(--bg-color); padding: 10px; margin-bottom: 8px; border-radius: 5px; cursor: pointer; transition: all 0.2s;" 
+           onmouseover="this.style.background='var(--accent-color)'; this.style.color='var(--text-color)'" 
+           onmouseout="this.style.background=''; this.style.color='var(--bg-color)'">Pop</div> 
+    </aside>  
+
+    <main style="grid-area: main; margin-top: -100px; margin-left: -300px;">
+
+      <div class="container" style="display: flex; flex-direction: column; align-items: flex-start; gap: 15px;"> 
+        <input id="search" placeholder="Search for songs..." style="width: 300px; padding: 8px;"> 
+        <div id="songList" style="width: 100%;"></div> 
+      </div> 
+      <audio id="player" controls style="width: 70%; margin-top: 20px;"></audio> 
+    </main>
+
+  </div> 
+
+  <div style="padding: 40px;">
+    <h2 style="color: var(--text-color); text-align: center; margin-bottom: 30px;">Album Gallery</h2>
+
+    <div class="css-carousel">
+      <div class="carousel-track">
+        <div class="carousel-item"><img src="Logos/qazaq.jpg" alt="Album 1"></div>
+        <div class="carousel-item"><img src="Logos/hits-music.jpg" alt="Album 2"></div>
+        <div class="carousel-item"><img src="Logos/rock-music.jpg" alt="Album 3"></div>
+        <div class="carousel-item"><img src="Logos/charts-music.jpg" alt="Album 4"></div>
+        <div class="carousel-item"><img src="Logos/album5.jpg" alt="Album 5"></div>
+        <div class="carousel-item"><img src="Logos/album6.jpg" alt="Album 6"></div>
+        <div class="carousel-item"><img src="Logos/album7.jpeg" alt="Album 7"></div>
+        <div class="carousel-item"><img src="Logos/album8.jpg" alt="Album 8"></div>
+        <div class="carousel-item"><img src="Logos/album9.jpg" alt="Album 9"></div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+  .css-carousel {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    gap: 20px;
+    padding-bottom: 10px;
+  }
+
+  .carousel-track {
+    display: flex;
+  }
+
+  .carousel-item {
+    scroll-snap-align: start;
+    flex: 0 0 30%; /* Desktop: 3 items visible */
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  .carousel-item:hover {
+    transform: scale(1.05);
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Tablet: 2 items */
+  @media (max-width: 1024px) {
+    .carousel-item {
+      flex: 0 0 45%;
+    }
+  }
+
+  /* Mobile: 1 item */
+  @media (max-width: 768px) {
+    .carousel-item {
+      flex: 0 0 80%;
+    }
+  }
+  </style>
+
+
+  <footer style="background: var(--text-color); color: var(--bg-color); text-align: center; padding: 20px; margin-top: 40px;"> 
+    <p>&copy; All Songs Reserved</p> 
+  </footer> 
+
+  <div id="songInfoModal" class="song-info-modal"> 
+    <div class="song-info-content"> 
+      <div class="song-info-header"> 
+        <h3 id="modalSongTitle"></h3> 
+        <button class="close-btn" onclick="closeSongModal()">×</button> 
+      </div> 
+      <div class="song-info-body"> 
+        <div class="info-item"> <strong>Artist:</strong> <span id="modalArtist"></span> </div> 
+        <div class="info-item"> <strong>Year:</strong> <span id="modalYear"></span> </div> 
+        <div class="info-item"> <strong>Genre:</strong> <span id="modalGenre"></span> </div> 
+        <div class="song-description"> 
+          <h4>About this track</h4> 
+          <p id="modalInfo"></p> 
+        </div> 
+      </div> 
+      <div class="song-info-actions"> 
+        <button class="modal-btn play-modal-btn" id="modalPlayBtn">Play Now</button> 
+        <button class="modal-btn add-modal-btn" id="modalAddBtn">Add to Playlist</button> 
+      </div> 
+    </div> 
+  </div> 
+
+  <script src="songlist.js"></script> 
+  <script src="assignment5.js"></script>
+  <style> 
+    .feature-card { 
+      flex: 1 1 300px; 
+      background: var(--text-color); 
+      border-radius: 10px; 
+      overflow: hidden; 
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+      transition: transform 0.3s ease; 
+      display: flex; 
+      flex-direction: column; 
+    } 
+    .feature-card:hover { 
+      transform: translateY(-8px); 
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
+    } 
+    .feature-card img { 
+      width: 100%; 
+      height: 180px; 
+      object-fit: cover; 
+    } 
+    .gallery-item { 
+      position: relative; 
+      overflow: hidden; 
+      border-radius: 10px; 
+      cursor: pointer; 
+      transition: transform 0.3s ease; 
+    } 
+    .gallery-item:hover { 
+      transform: scale(1.05); 
+    } 
+    .gallery-item img { 
+      width: 100%; 
+      height: 220px; 
+      object-fit: cover; 
+      display: block; 
+    } 
+    .caption { 
+      position: absolute; 
+      bottom: 0; 
+      left: 0; 
+      right: 0; 
+      background: var(--text-color); 
+      color: var(--bg-color); 
+      padding: 15px; 
+      transform: translateY(100%); 
+      transition: transform 0.3s ease; 
+    } 
+    .gallery-item:hover .caption { 
+      transform: translateY(0); 
+    } 
+  </style> 
+</body> 
+</html>
